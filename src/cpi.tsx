@@ -1,17 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
-interface CpiProps {
-    className?: string;
+export interface CircularProgressIndicator {
+    /** Vertical length of the element */
     height?: number;
+    /** Horizontal length of the element */
     width?: number;
+    /** Radius of the circle */
     r?: number;
+    /** Width of the stroke */
     strokeWidth?: number;
+    /** Duration of the animation */
     dur?: number;
+    /** Color used to paint the outline of the circle */
     stroke?: string;
+    /** Value in milliseconds which describes a delay before showing the component */
     timeout?: number;
+    /** Class name or set of class names which will assign to the element  */
+    className?: string;
+    /** Pass onClick property to the root DOM element of the component */
+    onClick?: () => void;
 }
 
-export const CircularProgressIndicator = (props: CpiProps) => {
+export const CircularProgressIndicator = (props: CircularProgressIndicator) => {
     const [opacity, setOpacity] = useState(0);
     
     useEffect(() => {
@@ -35,6 +45,7 @@ export const CircularProgressIndicator = (props: CpiProps) => {
             className={props.className ? props.className : 'circular-progress-indicator' }
             width={props.width ? props.width : 50} 
             height={props.height ? props.height : 50}
+            onClick={props.onClick}
             >
             <circle 
                 stroke={props.stroke ? props.stroke : undefined} 

@@ -59,21 +59,55 @@ const App = () => {
     return (
         <>
             <main>
-                <div>
-                    <CircularProgressIndicator
-                        height={Number(formik.values.height)}
-                        width={Number(formik.values.width)}
-                        r={Number(formik.values.radius)}
-                        strokeWidth={Number(formik.values.stroke)}
-                        dur={Number(formik.values.dur)}
-                        timeout={Number(formik.values.timeout)}
-                        stroke={formik.values.color}
-                        key={reload}
-                    />
+                <div className='svg-container'>
+                    <div>
+                        <CircularProgressIndicator
+                            height={Number(formik.values.height)}
+                            width={Number(formik.values.width)}
+                            r={Number(formik.values.radius)}
+                            strokeWidth={Number(formik.values.stroke)}
+                            dur={Number(formik.values.dur)}
+                            timeout={Number(formik.values.timeout)}
+                            stroke={formik.values.color}
+                            key={reload}
+                        />
+                    </div>
                 </div>
-                <div className='react-props'>
-                    <span className='header-large'>React Component props</span>
-                </div>              
+                <div className='react-info-container body-large'>
+                    <div>                    
+                        <div>
+                            <img src='/img/icons/react-logo.svg' alt='react-logo' /> 
+                            <span className='headline-large'>React component props</span>
+                            <span className='title-large'>Most props looks like SVG attributes:</span>
+                        </div>
+                        <ul>
+                            <li>height - vertical length of the element</li>
+                            <li>width - horizontal length of the element</li>
+                            <li>r - radius of the circle</li>
+                            <li>strokeWidth - width of the stroke</li>
+                            <li>dur - duration of the animation</li>
+                            <li>stroke - color used to paint the outline of the circle</li>
+                            <li>timeout - describes the delay before showing the component</li>
+                            <li>className - class name or set of class names to assign to the component</li>
+                            <li>onClick - pass onClick to the svg element of the component</li>
+                        </ul>
+                    </div>
+                    <pre className='react-props'>
+                    const <span className='y'>CircularProgressIndicator</span> <span className='b'>=</span> <span className='v'>{`((`} </span>props: <span className='v'>{`{`}</span><br />
+                    {`  `}height?: <span className='n'>number</span><span className='v'>;</span><br />
+                    {`  `}width?: <span className='n'>number</span><span className='v'>;</span><br />
+                    {`  `}r?: <span className='n'>number</span><span className='v'>;</span><br />
+                    {`  `}strokeWidth?: <span className='n'>number</span><span className='v'>;</span><br />
+                    {`  `}dur?: <span className='n'>number</span><span className='v'>;</span><br />
+                    {`  `}stroke?: <span className='n'>string</span><span className='v'>;</span><br />
+                    {`  `}timeout?: <span className='n'>number</span><span className='v'>;</span><br />
+                    {`  `}className?: <span className='n'>string</span><span className='v'>;</span><br />
+                    {`  `}<span className='n'>onClick</span>?: <span className='v'>{`()`}</span> <span className='b'>{`=>`}</span> void<br />
+                    <span className='v'>{`})`}</span> <span className='b'>{`=>`}</span> <span className='v'>{`{`}</span><br />
+                    {`  `}// ...<br />
+                    <span className='v'>{`}`}</span>
+                    </pre>          
+                </div>         
             </main>
             <form onSubmit={formik.handleSubmit} className='tools'>
                 <span className='tools-dimensions-title display-small'>Customise</span>

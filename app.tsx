@@ -5,8 +5,18 @@ import ReactDOM from 'react-dom/client';
 import { useFormik } from 'formik';
 import { CircularProgressIndicator } from './src/cpi';
 
+const iconsLoaded = (event: any) => {
+    event.fontfaces.map( (font: any) => {
+        if (font.family == 'Material Symbols Rounded') {
+            document.getElementById("root")?.classList.remove('icons-hidden');
+        }
+    })
+}
+document.fonts.addEventListener("loadingdone", iconsLoaded);
+
 const App = () => {
-    const [formIsEmpty, SetFormIsEmpty] = useState(true)
+    const [formIsEmpty, SetFormIsEmpty] = useState(true);
+    const [reload, setReload] = useState(1);
 
     const formik = useFormik({
         initialValues: {
@@ -14,7 +24,7 @@ const App = () => {
             width: '',
             radius: '',
             stroke: '',
-            color: '',
+            color: '#79747e',
             dur: '',
             timeout: ''
         },
@@ -24,7 +34,7 @@ const App = () => {
     });
 
     useEffect(() => {
-        if (Object.values(formik.values).every(val => val === '')) {
+        if (Object.values(formik.values).every(val => val === '' || val === '#79747e')) {
             SetFormIsEmpty(true)
         } else {
             SetFormIsEmpty(false)
@@ -46,20 +56,24 @@ const App = () => {
         document.body.removeChild(downloadLink);
     }
 
-    return ( 
+    return (
         <>
             <main>
                 <div>
                     <CircularProgressIndicator
                         height={Number(formik.values.height)}
                         width={Number(formik.values.width)}
-                        radius={Number(formik.values.radius)}
+                        r={Number(formik.values.radius)}
                         strokeWidth={Number(formik.values.stroke)}
-                        duration={Number(formik.values.dur)}
+                        dur={Number(formik.values.dur)}
                         timeout={Number(formik.values.timeout)}
-                        color={formik.values.color}
+                        stroke={formik.values.color}
+                        key={reload}
                     />
-                </div>                
+                </div>
+                <div className='react-props'>
+                    <span className='header-large'>React Component props</span>
+                </div>              
             </main>
             <form onSubmit={formik.handleSubmit} className='tools'>
                 <span className='tools-dimensions-title display-small'>Customise</span>
@@ -179,8 +193,12 @@ const App = () => {
                     <label htmlFor="timeout">Timeout*</label>
                     {formik.touched.timeout && formik.errors.timeout ? (
                         <div className='material-symbols-rounded error-icon'>error</div>
-                    ) : formik.values.timeout ? 
-                        <button className='material-symbols-rounded' onClick={() => formik.setFieldValue('timeout', '', false)}>cancel</button> : null }
+                    ) : formik.values.timeout ?
+                        <>
+                            <button className='material-symbols-rounded' onClick={() => formik.setFieldValue('timeout', '', false)}>cancel</button> 
+                            <button type='button' className='material-symbols-rounded reload-svg' onClick={ () => setReload(Math.random()) }>refresh</button>
+                        </>
+                    : null }
                     {formik.touched.timeout && formik.errors.timeout ? (
                         <div className='error-label'>{formik.errors.timeout}</div>
                     ) : <div className='supporting-text'>*set timeout in milliseconds</div> }
@@ -203,7 +221,7 @@ const App = () => {
                             <div className='error-label'>{formik.errors.color}</div>
                             <div className='material-symbols-rounded error-icon'>error</div>
                         </>
-                    ) : formik.values.color ? ( <button className='material-symbols-rounded' onClick={() => formik.setFieldValue('color', '', false)}>cancel</button> ) : null }
+                    ) : formik.values.color != '#79747e' ? ( <button className='material-symbols-rounded' onClick={() => formik.setFieldValue('color', '#79747e', false)}>cancel</button> ) : null }
                 </div>
 
                 <button className='outlined' type='button' 

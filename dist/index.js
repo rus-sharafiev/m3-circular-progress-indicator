@@ -25815,20 +25815,20 @@
     }, []);
     let x = props.width ? props.width / 2 : 25;
     let y = props.height ? props.height / 2 : 25;
-    let r = props.radius ? props.radius : 18;
+    let r = props.r ? props.r : 18;
     return /* @__PURE__ */ import_react2.default.createElement(
       "svg",
       {
         style: { opacity, transition: "opacity 0.2s ease-in-out" },
         xmlns: "http://www.w3.org/2000/svg",
-        className: "circular-progress-indicator",
+        className: props.className ? props.className : "circular-progress-indicator",
         width: props.width ? props.width : 50,
         height: props.height ? props.height : 50
       },
       /* @__PURE__ */ import_react2.default.createElement(
         "circle",
         {
-          stroke: props.color ? props.color : void 0,
+          stroke: props.stroke ? props.stroke : void 0,
           fill: "none",
           strokeWidth: props.strokeWidth ? props.strokeWidth : 4,
           cx: x,
@@ -25841,7 +25841,7 @@
           "animate",
           {
             attributeName: "stroke-dashoffset",
-            dur: props.duration ? props.duration + "s" : "4.1s",
+            dur: props.dur ? props.dur + "s" : "4.1s",
             repeatCount: "indefinite",
             values: `${-2 * Math.PI * r * 1}; ${-2 * Math.PI * r * 1.81}; ${-2 * Math.PI * r * 1.86}; ${-2 * Math.PI * r * 2.56}; ${-2 * Math.PI * r * 2.74}; ${-2 * Math.PI * r * 2.86}; ${-2 * Math.PI * r * 3.67}; ${-2 * Math.PI * r * 3.71}; ${-2 * Math.PI * r * 4.42}; ${-2 * Math.PI * r * 4.6}; ${-2 * Math.PI * r * 4.71}`,
             keyTimes: "0; 0.0625; 0.125; 0.1875; 0.25; 0.5; 0.5625; 0.625; 0.6875; 0.75; 1"
@@ -25853,7 +25853,7 @@
             attributeName: "transform",
             attributeType: "XML",
             type: "rotate",
-            dur: props.duration ? props.duration + "s" : "4.1s",
+            dur: props.dur ? props.dur + "s" : "4.1s",
             repeatCount: "indefinite",
             values: `-90 ${x} ${y}; 270 ${x} ${y}; 450 ${x} ${y}; 810 ${x} ${y}; 990 ${x} ${y}`,
             keyTimes: "0; 0.3; 0.5; 0.8; 1"
@@ -25864,15 +25864,24 @@
   };
 
   // app.tsx
+  var iconsLoaded = (event) => {
+    event.fontfaces.map((font) => {
+      if (font.family == "Material Symbols Rounded") {
+        document.getElementById("root")?.classList.remove("icons-hidden");
+      }
+    });
+  };
+  document.fonts.addEventListener("loadingdone", iconsLoaded);
   var App = () => {
     const [formIsEmpty, SetFormIsEmpty] = (0, import_react3.useState)(true);
+    const [reload, setReload] = (0, import_react3.useState)(1);
     const formik = useFormik({
       initialValues: {
         height: "",
         width: "",
         radius: "",
         stroke: "",
-        color: "",
+        color: "#79747e",
         dur: "",
         timeout: ""
       },
@@ -25881,7 +25890,7 @@
       }
     });
     (0, import_react3.useEffect)(() => {
-      if (Object.values(formik.values).every((val) => val === "")) {
+      if (Object.values(formik.values).every((val) => val === "" || val === "#79747e")) {
         SetFormIsEmpty(true);
       } else {
         SetFormIsEmpty(false);
@@ -25906,13 +25915,14 @@
       {
         height: Number(formik.values.height),
         width: Number(formik.values.width),
-        radius: Number(formik.values.radius),
+        r: Number(formik.values.radius),
         strokeWidth: Number(formik.values.stroke),
-        duration: Number(formik.values.dur),
+        dur: Number(formik.values.dur),
         timeout: Number(formik.values.timeout),
-        color: formik.values.color
+        stroke: formik.values.color,
+        key: reload
       }
-    ))), /* @__PURE__ */ import_react3.default.createElement("form", { onSubmit: formik.handleSubmit, className: "tools" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "tools-dimensions-title display-small" }, "Customise"), /* @__PURE__ */ import_react3.default.createElement("img", { src: "img/icons/height.svg", alt: "height" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement(
+    )), /* @__PURE__ */ import_react3.default.createElement("div", { className: "react-props" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "header-large" }, "React Component props"))), /* @__PURE__ */ import_react3.default.createElement("form", { onSubmit: formik.handleSubmit, className: "tools" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "tools-dimensions-title display-small" }, "Customise"), /* @__PURE__ */ import_react3.default.createElement("img", { src: "img/icons/height.svg", alt: "height" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement(
       "input",
       {
         className: formik.touched.height && formik.errors.height ? "error" : void 0,
@@ -25984,7 +25994,7 @@
         value: formik.values.timeout,
         placeholder: " "
       }
-    ), /* @__PURE__ */ import_react3.default.createElement("label", { htmlFor: "timeout" }, "Timeout*"), formik.touched.timeout && formik.errors.timeout ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "material-symbols-rounded error-icon" }, "error") : formik.values.timeout ? /* @__PURE__ */ import_react3.default.createElement("button", { className: "material-symbols-rounded", onClick: () => formik.setFieldValue("timeout", "", false) }, "cancel") : null, formik.touched.timeout && formik.errors.timeout ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "error-label" }, formik.errors.timeout) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "supporting-text" }, "*set timeout in milliseconds")), /* @__PURE__ */ import_react3.default.createElement("img", { src: "img/icons/color.svg", alt: "color" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement(
+    ), /* @__PURE__ */ import_react3.default.createElement("label", { htmlFor: "timeout" }, "Timeout*"), formik.touched.timeout && formik.errors.timeout ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "material-symbols-rounded error-icon" }, "error") : formik.values.timeout ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "material-symbols-rounded", onClick: () => formik.setFieldValue("timeout", "", false) }, "cancel"), /* @__PURE__ */ import_react3.default.createElement("button", { type: "button", className: "material-symbols-rounded reload-svg", onClick: () => setReload(Math.random()) }, "refresh")) : null, formik.touched.timeout && formik.errors.timeout ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "error-label" }, formik.errors.timeout) : /* @__PURE__ */ import_react3.default.createElement("div", { className: "supporting-text" }, "*set timeout in milliseconds")), /* @__PURE__ */ import_react3.default.createElement("img", { src: "img/icons/color.svg", alt: "color" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement(
       "input",
       {
         className: formik.touched.color && formik.errors.color ? "error" : void 0,
@@ -25996,7 +26006,7 @@
         value: formik.values.color,
         placeholder: " "
       }
-    ), /* @__PURE__ */ import_react3.default.createElement("label", { htmlFor: "color" }, "Stroke color"), formik.touched.color && formik.errors.color ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "error-label" }, formik.errors.color), /* @__PURE__ */ import_react3.default.createElement("div", { className: "material-symbols-rounded error-icon" }, "error")) : formik.values.color ? /* @__PURE__ */ import_react3.default.createElement("button", { className: "material-symbols-rounded", onClick: () => formik.setFieldValue("color", "", false) }, "cancel") : null), /* @__PURE__ */ import_react3.default.createElement(
+    ), /* @__PURE__ */ import_react3.default.createElement("label", { htmlFor: "color" }, "Stroke color"), formik.touched.color && formik.errors.color ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "error-label" }, formik.errors.color), /* @__PURE__ */ import_react3.default.createElement("div", { className: "material-symbols-rounded error-icon" }, "error")) : formik.values.color != "#79747e" ? /* @__PURE__ */ import_react3.default.createElement("button", { className: "material-symbols-rounded", onClick: () => formik.setFieldValue("color", "#79747e", false) }, "cancel") : null), /* @__PURE__ */ import_react3.default.createElement(
       "button",
       {
         className: "outlined",

@@ -285,7 +285,7 @@
     --md-sys-color-scrim: var(--md-sys-color-scrim-dark);
   }
 }
-@media (prefers-color-scheme: ligth) {
+@media (prefers-color-scheme: light) {
   :root {
     --md-sys-color-primary: var(--md-sys-color-primary-light);
     --md-sys-color-on-primary: var(--md-sys-color-on-primary-light);
@@ -719,6 +719,7 @@ form > div > label {
   transition: all 0.1s linear;
   display: flex;
   align-items: center;
+  cursor: text;
 }
 form > div > textarea:not(:placeholder-shown) + label,
 form > div > textarea:focus + label,
@@ -874,8 +875,9 @@ form > button.outlined:disabled:hover {
 input[type=color],
 input[type=color]:focus,
 input[type=color]::-webkit-color-swatch-wrapper {
-  padding: 0;
+  padding: 4px;
   overflow: hidden;
+  cursor: pointer;
 }
 input[type=color]::-webkit-color-swatch {
   border: none;
@@ -898,6 +900,12 @@ input[type=color]::-webkit-color-swatch {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--md-sys-color-primary);
 }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 0;
+  margin: 0;
+  display: none;
+}
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -916,17 +924,25 @@ body {
   transition: all 0.5s linear;
   color: var(--md-sys-color-on-surface);
   display: grid;
-  grid: 30px 80px 1fr 50px 30px / minmax(30px, 1fr) 10fr 350px minmax(30px, 1fr);
+  grid: 30px 80px 1fr 50px 30px / 1fr 10fr 350px 1fr;
   grid-template-areas: ". . . ." ". h t ." ". m t ." ". f t ." ". f . .";
   justify-content: flex-start;
+  min-height: 100vh;
+  grid-gap: 0 30px;
 }
-main > div {
+main {
+  grid-area: m;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+main > div:first-child {
   display: flex;
   border: 1px dotted var(--md-sys-color-surface-variant);
   border-radius: 5px;
 }
-.circular-progress-indicator {
-  stroke: var(--md-sys-color-primary);
+main > div:last-child {
 }
 header {
   grid-area: h;
@@ -957,13 +973,6 @@ header > div:nth-child(4) {
   grid-row: 4 / 5;
   color: var(--md-sys-color-on-surface-variant);
   justify-self: end;
-}
-main {
-  grid-area: m;
-  height: calc(100vh - 190px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 footer {
   grid-area: f;
@@ -1029,6 +1038,15 @@ footer > svg {
 }
 .tools > div {
   grid-column: 3 / 4;
+}
+.reload-svg {
+  right: 45px;
+}
+.material-symbols-rounded {
+  transition: opacity 0.2s ease-in;
+}
+.icons-hidden .material-symbols-rounded {
+  opacity: 0;
 }
 @media only screen and (max-device-width: 1440px) and (-webkit-min-device-pixel-ratio: 2) {
   body {

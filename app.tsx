@@ -87,13 +87,17 @@ const App = () => {
                             <li><span className='mono'>r</span> - radius of the circle <span className='defaults body-medium'>{`(default: 18)`}</span></li>
                             <li><span className='mono'>strokeWidth</span> - width of the stroke <span className='defaults body-medium'>{`(default: 4)`}</span></li>
                             <li><span className='mono'>dur</span> - duration of the animation <span className='defaults body-medium'>{`(default: 4.1)`}</span></li>
-                            <li><span className='mono'>stroke</span> - color used to paint the outline of the circle <span className='defaults body-medium'>{`(default: undefined)`}</span></li>
+                            <li><span className='mono'>stroke</span> - color used to paint the outline of the circle <span className='defaults body-medium'>{`(default: undefined)`}</span>
+                                <ul>
+                                    <li className='body-small defaults'>can also be specified via CSS, e.g.<span className='mono'>{` .my-class { stroke: white }`}</span></li>
+                                </ul>
+                            </li>
+                            <li><span className='mono'>className</span> - class name to assign to the component <span className='defaults body-medium'>{`(default: undefined)`}</span></li>
                             <li><span className='mono'>timeout</span> - describes the delay before showing the component <span className='defaults body-medium'>{`(default: 200)`}</span>
                                 <ul>
                                     <li className='body-small defaults'>click the refresh button inside the timeout field to see a result</li>
                                 </ul>
                             </li>
-                            <li><span className='mono'>className</span> - class name to assign to the component <span className='defaults body-medium'>{`(default: undefined)`}</span></li>
                             <li><span className='mono'>onClick</span> - pass onClick to the svg element of the component</li>
                         </ul>
                     </div>

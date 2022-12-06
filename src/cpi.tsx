@@ -42,7 +42,7 @@ export const CircularProgressIndicator = (props: CircularProgressIndicator) => {
 
     return(
         <svg style={{opacity: opacity, transition: 'opacity 0.2s ease-in-out'}} xmlns="http://www.w3.org/2000/svg" 
-            className={props.className ? props.className : 'circular-progress-indicator' }
+            className={props.className ? props.className : undefined}
             width={props.width ? props.width : 50} 
             height={props.height ? props.height : 50}
             onClick={props.onClick}

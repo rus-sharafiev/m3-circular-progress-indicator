@@ -924,8 +924,8 @@ body {
   transition: all 0.5s linear;
   color: var(--md-sys-color-on-surface);
   display: grid;
-  grid: 30px 80px 1fr 70px 30px / 1fr 10fr 350px 1fr;
-  grid-template-areas: ". . . ." ". h t ." ". m t ." ". f t ." ". f . .";
+  grid: 30px 30px 80px 1fr 70px 30px / 1fr 10fr 350px 1fr;
+  grid-template-areas: ". . . ." ". h . ." ". h t ." ". m t ." ". f t ." ". f . .";
   justify-content: flex-start;
   min-height: 100vh;
   grid-gap: 0 30px;
@@ -937,7 +937,7 @@ main {
   justify-items: center;
 }
 .svg-container {
-  min-height: 50vh;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1045,11 +1045,11 @@ footer > svg {
   grid-column: 1 / 2;
   grid-row: 1 / 3;
   fill: var(--md-sys-color-on-surface);
-  opacity: 0.1;
+  opacity: 0.13;
 }
 .footer-subtitle,
 .footer-title {
-  opacity: 0.1;
+  opacity: 0.13;
   transition: opacity 0.2s ease-in-out;
   color: var(--md-sys-color-on-surface);
   text-decoration: none;

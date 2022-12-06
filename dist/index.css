@@ -934,6 +934,7 @@ main {
   grid-area: m;
   display: grid;
   grid: 1fr min-content / 1fr;
+  justify-items: center;
 }
 .svg-container {
   min-height: 50vh;
@@ -950,7 +951,9 @@ main {
 .react-info-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px 50px;
+  gap: 20px 30px;
+  width: 100%;
+  justify-content: space-around;
 }
 .react-info-container > div:first-child {
   display: flex;
@@ -972,13 +975,21 @@ main {
 .react-info-container > div:first-child > div > span {
   grid-column: 2 / 3;
 }
+.react-info-container > div:first-child > div > span:last-child {
+  color: var(--md-sys-color-on-surface-variant);
+}
 pre {
   background-color: #292d3e;
   border-radius: 12px;
   color: #bfc7d5;
-  font-family: "Roboto Mono", monospace;
   padding: 16px;
   margin: 0;
+}
+.mono {
+  font-family: "Roboto Mono", monospace;
+}
+.defaults {
+  color: var(--md-sys-color-on-surface-variant);
 }
 .y {
   color: rgb(255, 203, 107);

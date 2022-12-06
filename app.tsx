@@ -81,18 +81,18 @@ const App = () => {
                             <span className='title-large'>Most props looks like SVG attributes:</span>
                         </div>
                         <ul>
-                            <li>height - vertical length of the element</li>
-                            <li>width - horizontal length of the element</li>
-                            <li>r - radius of the circle</li>
-                            <li>strokeWidth - width of the stroke</li>
-                            <li>dur - duration of the animation</li>
-                            <li>stroke - color used to paint the outline of the circle</li>
-                            <li>timeout - describes the delay before showing the component</li>
-                            <li>className - class name or set of class names to assign to the component</li>
-                            <li>onClick - pass onClick to the svg element of the component</li>
+                            <li><span className='mono'>height</span> - vertical length of the element <span className='defaults body-medium'>{`(default: 50)`}</span></li>
+                            <li><span className='mono'>width</span> - horizontal length of the element <span className='defaults body-medium'>{`(default: 50)`}</span></li>
+                            <li><span className='mono'>r</span> - radius of the circle <span className='defaults body-medium'>{`(default: 18)`}</span></li>
+                            <li><span className='mono'>strokeWidth</span> - width of the stroke <span className='defaults body-medium'>{`(default: 4)`}</span></li>
+                            <li><span className='mono'>dur</span> - duration of the animation <span className='defaults body-medium'>{`(default: 4.1)`}</span></li>
+                            <li><span className='mono'>stroke</span> - color used to paint the outline of the circle <span className='defaults body-medium'>{`(default: undefined)`}</span></li>
+                            <li><span className='mono'>timeout</span> - describes the delay before showing the component <span className='defaults body-medium'>{`(default: 200)`}</span></li>
+                            <li><span className='mono'>className</span> - class name to assign to the component <span className='defaults body-medium'>{`(default: undefined)`}</span></li>
+                            <li><span className='mono'>onClick</span> - pass onClick to the svg element of the component</li>
                         </ul>
                     </div>
-                    <pre className='react-props'>
+                    <pre className='react-props mono'>
                     const <span className='y'>CircularProgressIndicator</span> <span className='b'>=</span> <span className='v'>{`((`} </span>props: <span className='v'>{`{`}</span><br />
                     {`  `}height?: <span className='n'>number</span><span className='v'>;</span><br />
                     {`  `}width?: <span className='n'>number</span><span className='v'>;</span><br />

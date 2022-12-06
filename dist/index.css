@@ -951,9 +951,8 @@ main {
 .react-info-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px 30px;
+  gap: 20px 50px;
   width: 100%;
-  justify-content: space-around;
 }
 .react-info-container > div:first-child {
   display: flex;
@@ -1021,17 +1020,26 @@ header > svg {
 header > div:nth-child(2) {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  font-size: 24px;
+  font-weight: 400px;
+  line-height: 32px;
   color: var(--md-sys-color-on-surface-variant);
 }
 header > div:nth-child(3) {
   grid-column: 2 / 3;
   grid-row: 3 / 4;
+  font-size: 57px;
+  font-weight: 400px;
+  line-height: 64px;
 }
 header > div:nth-child(4) {
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   color: var(--md-sys-color-on-surface-variant);
   justify-self: end;
+  font-size: 22px;
+  font-weight: 400px;
+  line-height: 28px;
 }
 footer {
   grid-area: f;
@@ -1083,6 +1091,7 @@ footer > svg {
   gap: 32px 16px;
   padding: 16px 0;
   height: min-content;
+  z-index: 10;
 }
 .tools > span,
 .tools > button {
@@ -1110,7 +1119,7 @@ footer > svg {
   opacity: 0;
 }
 @media only screen and (max-device-width: 1440px) and (-webkit-min-device-pixel-ratio: 2) {
-  body {
+  #root {
     padding: 20px 0;
     display: grid;
     grid: 0 35px 100vw repeat(2, min-content) / 1fr;
@@ -1120,13 +1129,14 @@ footer > svg {
     position: fixed;
     justify-self: center;
     display: grid;
-    grid: 0 15px 20px / 35px 1fr;
+    grid: 0 15px 20px 15px / 35px 1fr;
     gap: 0 10px;
   }
-  header > .subtitle {
+  header > div:nth-child(4),
+  header > div:nth-child(2) {
     font-size: 13px;
   }
-  header > .title {
+  header > div:nth-child(3) {
     font-size: 23px;
   }
   main {
@@ -1134,6 +1144,9 @@ footer > svg {
     top: 55px;
     width: 100vw;
     height: 100vw;
+  }
+  .react-info-container {
+    display: none;
   }
   footer {
     margin-top: 20px;

@@ -69,6 +69,7 @@ const App = () => {
                             dur={Number(formik.values.dur)}
                             timeout={Number(formik.values.timeout)}
                             stroke={formik.values.color}
+                            className='circular-progress-indicator'
                             key={reload}
                         />
                     </div>
@@ -273,9 +274,9 @@ const App = () => {
                 <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42">
                     <path d="M21,2A19,19,0,1,1,2,21" style={{fill:'none', strokeMiterlimit: '10', strokeWidth: '4px'}}/>
                 </svg>
-                <div className='headline-small'>SVG implementation of the Material Design 3</div>
-                <div className='display-large'>Circular Progress Indicator</div>
-                <div className='title-large'>Also available as React component</div>
+                <div>SVG implementation of the Material Design 3</div>
+                <div>Circular Progress Indicator</div>
+                <div>Also available as React component</div>
             </header>
             <footer>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.58 31.77">
